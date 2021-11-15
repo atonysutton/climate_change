@@ -1026,7 +1026,7 @@ ghg %>% filter(year >= 2000, !is.na(polyarchy)) %>%
   scale_x_continuous(labels = scales::comma)+
   theme_minimal()+
   labs(title = 'Democracy Escapes Development Dilemma',
-       subtitle = '  2000-2017',
+       subtitle = '  Greenhouse Gas Emissions, 2000-2017',
        y = 'Emissions per capita (metric tons)',
        x = 'GDP per capita (USD)')+
   theme(legend.position = 'none',
