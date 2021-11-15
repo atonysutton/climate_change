@@ -989,7 +989,7 @@ ghg %>% mutate(emit_rel = emit_lag / (gdp * pop)) %>%
   geom_segment(aes(x=0, xend=1, y=median_emit_rel_log, yend=median_emit_rel_log), linetype = 'dashed')+
   theme_minimal()+
   labs(title = 'More Democracy, Fewer Emissions',
-       subtitle = '  1971-2017',
+       subtitle = '  Greenhouse Gase Emissions, 1971-2017',
        y = 'Emissions per GDP and Population',
        x = 'Degree of Democracy')+
   theme(title = element_text(size = 20, face = 'bold'),
@@ -1134,7 +1134,7 @@ ghg %>% filter(!is.na(regime), year >= 2000) %>%
   annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
   theme_minimal()+
   labs(title = 'Populism: Like Slightly Autocratic Democracy',
-       subtitle = '  2000-2017',
+       subtitle = '  Greenhouse Gas Emissions, 2000-2017',
        y = 'Emissions per capita (metric tons)',
        x = 'GDP per capita (US$)')+
   theme(legend.position = 'none',
