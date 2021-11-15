@@ -144,7 +144,7 @@ ghg_eu <- ghg %>% filter(!country_name %in% eu_list) %>% rbind(eu)
 
 
 ##regime type data from V-Dem - one row per country year ----
-vdem <- read_csv('./data/V-Dem-CY-Full+Others-v11.1.csv') %>%
+vdem <- read_csv('./data/V_Dem_v11.1_trimmed.csv') %>%
   select(country_name, country_text_id, year, 
          v2x_polyarchy, v2x_libdem, v2x_partipdem, v2x_delibdem, v2x_egaldem)
 
