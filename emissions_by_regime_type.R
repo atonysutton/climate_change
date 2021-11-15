@@ -1267,10 +1267,3 @@ ggplot(data = kc, aes(x = gdp_percap))+
   geom_point(aes(y = emit_auto), color = 'firebrick')+
   geom_point(aes(y = emit_dem), color = 'dodgerblue')
 
-
-
-
-   
-#notes
- - perhaps group all arbitrary specifications at top?
-  
