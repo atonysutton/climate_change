@@ -1,0 +1,29 @@
+
+<table style="text-align:center"><caption><strong>Populism and Climate Emissions Among Democracies Only</strong></caption>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td colspan="3"><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="3" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td colspan="3">Greenhouse Gas Emissions, lagged one year</td></tr>
+<tr><td style="text-align:left"></td><td colspan="3"><em>OLS</em></td></tr>
+<tr><td style="text-align:left"></td><td>(1)</td><td>(2)</td><td>(3)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Populism</td><td>0.044<sup>***</sup></td><td>0.016</td><td>0.0003</td></tr>
+<tr><td style="text-align:left"></td><td>(0.015)</td><td>(0.014)</td><td>(0.014)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Democracy</td><td></td><td></td><td>-0.123<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td>(0.031)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">GDP</td><td>0.563<sup>***</sup></td><td>0.374<sup>***</sup></td><td>0.403<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.006)</td><td>(0.018)</td><td>(0.019)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">GDP squared</td><td></td><td>0.154<sup>***</sup></td><td>0.136<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td></td><td>(0.014)</td><td>(0.015)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td style="text-align:left">Population</td><td>0.269<sup>***</sup></td><td>0.286<sup>***</sup></td><td>0.279<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.008)</td><td>(0.007)</td><td>(0.007)</td></tr>
+<tr><td style="text-align:left"></td><td></td><td></td><td></td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>585</td><td>585</td><td>585</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.960</td><td>0.967</td><td>0.968</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.959</td><td>0.966</td><td>0.966</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>0.295 (df = 564)</td><td>0.268 (df = 563)</td><td>0.265 (df = 562)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>676.490<sup>***</sup> (df = 20; 564)</td><td>782.009<sup>***</sup> (df = 21; 563)</td><td>766.820<sup>***</sup> (df = 22; 562)</td></tr>
+<tr><td colspan="4" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td colspan="3" style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
