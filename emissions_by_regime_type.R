@@ -1267,3 +1267,179 @@ ggplot(data = kc, aes(x = gdp_percap))+
   geom_point(aes(y = emit_auto), color = 'firebrick')+
   geom_point(aes(y = emit_dem), color = 'dodgerblue')
 
+##illustrate kuznets curve by regime type, iterated by era (straight data, not models)
+ghg %>% 
+  filter(polyarchy >= 0.5) %>%
+  mutate(emit_percap = emit_lag / pop,
+         gdp_percap = gdp / pop,
+         decade = case_when(year >= 2010 ~ as.character('d2010'),
+                             (year >= 2000 ~ 'd2000'),
+                             (year >= 1990 ~ 'd1990'),
+                             (year >= 1980 ~ 'd1980'),
+                             (year >= 1970 ~ 'd1970')) ) %>%
+  ggplot(aes(x = gdp_percap, y = (1000 * emit_percap), color = decade, linetype = decade))+
+  coord_cartesian(ylim = c(0,44))+
+  geom_smooth(size = 3, alpha = 0.2, se = FALSE)+
+#  annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 35)+
+#  annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
+  scale_x_continuous(labels = scales::comma)+
+  theme_minimal()+
+  labs(title = 'Democracies Improved Growth-Emissions Tradeoff',
+       subtitle = '  Greenhouse Gas Emissions, by decade',
+       y = 'Emissions per capita (metric tons)',
+       x = 'GDP per capita (USD)')+
+  theme(legend.position = 'none',
+        title = element_text(size = 20, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title.y = element_text(margin = margin(r = 8))) 
+
+ghg %>% 
+  filter(polyarchy >= 0.5) %>%
+  mutate(emit_percap = emit_lag / pop,
+         gdp_percap = gdp / pop,
+         decade = case_when(year >= 2010 ~ as.character('d2010'),
+                            (year >= 2000 ~ 'd2000'),
+                            (year >= 1990 ~ 'd1990'),
+                            (year >= 1980 ~ 'd1980'),
+                            (year >= 1970 ~ 'd1970')) ) %>%
+  ggplot()+
+  geom_smooth(data = . %>% filter(decade == 'd1970'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1980'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1990'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2000'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2010'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'solid', size = 2, alpha = 1, se = FALSE)+
+  coord_cartesian(ylim = c(0,60), xlim = c(0,90000))+
+  #  annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 35)+
+  #  annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
+  scale_x_continuous(labels = scales::comma)+
+  theme_minimal()+
+  labs(title = 'Democracies Improved Growth-Emissions Tradeoff',
+       subtitle = '  Greenhouse Gas Emissions, by decade',
+       y = 'Emissions per capita (metric tons)',
+       x = 'GDP per capita (USD)')+
+  theme(legend.position = 'none',
+        title = element_text(size = 20, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title.y = element_text(margin = margin(r = 8))) 
+
+
+
+ghg %>% 
+  filter(polyarchy < 0.5) %>%
+  mutate(emit_percap = emit_lag / pop,
+         gdp_percap = gdp / pop,
+         decade = case_when(year >= 2010 ~ as.character('d2010'),
+                            (year >= 2000 ~ 'd2000'),
+                            (year >= 1990 ~ 'd1990'),
+                            (year >= 1980 ~ 'd1980'),
+                            (year >= 1970 ~ 'd1970')) ) %>%
+  ggplot()+
+  geom_smooth(data = . %>% filter(decade == 'd1970'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1980'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1990'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2000'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2010'),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'solid', size = 2, alpha = 1, se = FALSE)+
+  coord_cartesian(ylim = c(0,60), xlim = c(0,90000))+
+  #  annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 35)+
+  #  annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
+  scale_x_continuous(labels = scales::comma)+
+  theme_minimal()+
+  labs(title = 'Autocracies Face Growth-Emissions Tradeoff',
+       subtitle = '  Greenhouse Gas Emissions, by decade',
+       y = 'Emissions per capita (metric tons)',
+       x = 'GDP per capita (USD)')+
+  theme(legend.position = 'none',
+        title = element_text(size = 20, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title.y = element_text(margin = margin(r = 8))) 
+
+ghg %>% 
+  filter(!is.na(polyarchy)) %>%
+  mutate(emit_percap = emit_lag / pop,
+         gdp_percap = gdp / pop,
+         decade = case_when(year >= 2010 ~ as.character('d2010'),
+                            (year >= 2000 ~ 'd2000'),
+                            (year >= 1990 ~ 'd1990'),
+                            (year >= 1980 ~ 'd1980'),
+                            (year >= 1970 ~ 'd1970')) ) %>%
+  ggplot()+
+  geom_smooth(data = . %>% filter(decade == 'd1970', polyarchy < 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1980', polyarchy < 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1990', polyarchy < 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2000', polyarchy < 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2010', polyarchy < 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'firebrick', linetype = 'solid', size = 2, alpha = 1, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1970', polyarchy >= 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1980', polyarchy >= 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd1990', polyarchy >= 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2000', polyarchy >= 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
+  geom_smooth(data = . %>% filter(decade == 'd2010', polyarchy >= 0.5),
+              aes(x = gdp_percap, y = (1000 * emit_percap)),
+              color = 'dodgerblue', linetype = 'solid', size = 2, alpha = 1, se = FALSE)+
+  coord_cartesian(ylim = c(0,60), xlim = c(0,90000))+
+  annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 53)+
+  annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
+  annotate('text', label = '1970s', color = 'gray40', size = 5, x = 75000, y = 62)+
+  annotate('text', label = '1980s', color = 'gray40', size = 5, x = 87500, y = 42)+
+  annotate('text', label = '1990s', color = 'gray40', size = 5, x = 72000, y = 44)+
+  annotate('text', label = '2000s', color = 'gray40', size = 5, x = 70000, y = 52)+
+  annotate('text', label = '2010s', color = 'gray40', size = 5, x = 73500, y = 34)+
+  scale_x_continuous(labels = scales::comma)+
+  theme_minimal()+
+  labs(title = 'Democracies Improving, Autocracies Not',
+       subtitle = '  Greenhouse Gas Emissions, by decade',
+       y = 'Emissions per capita (metric tons)',
+       x = 'GDP per capita (USD)')+
+  theme(legend.position = 'none',
+        title = element_text(size = 20, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title.y = element_text(margin = margin(r = 8))) 
+ggsave(filename = "./visuals/developmet_dilemma_by_decade_and_regime.jpg",
+       width = 10,
+       height = 6,
+       units = 'in')
