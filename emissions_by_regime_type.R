@@ -1019,7 +1019,7 @@ ghg %>% filter(year >= 2000, !is.na(polyarchy)) %>%
   scale_color_manual(values = ad_colors)+
   scale_fill_manual(values = ad_colors)+
   coord_cartesian(ylim = c(0,44))+
-  geom_smooth(size = 3, alpha = 0.2)+
+  geom_smooth(size = 3, alpha = 0.15)+
   annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 35)+
   annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
   geom_rug(sides = 'b', alpha = 0.3)+
@@ -1036,6 +1036,36 @@ ghg %>% filter(year >= 2000, !is.na(polyarchy)) %>%
         axis.text = element_text(size = 16),
         axis.title.y = element_text(margin = margin(r = 8))) 
 ggsave(filename = "./visuals/development_and_emissions_by_regime.jpg",
+       width = 10,
+       height = 6,
+       units = 'in')
+
+#repeat and add individual country-years
+ghg %>% filter(year >= 2000, !is.na(polyarchy)) %>%
+  mutate(regime = if_else(polyarchy >= 0.5, 'democracy', 'autocracy'),
+         emit_percap = emit_lag / pop,
+         gdp_percap = gdp / pop) %>%
+  ggplot(aes(x = gdp_percap, y = (1000 * emit_percap), color = regime, fill = regime))+
+  scale_color_manual(values = ad_colors)+
+  scale_fill_manual(values = ad_colors)+
+  coord_cartesian(ylim = c(0,44))+
+  geom_point(alpha = 0.2)+
+  geom_smooth(size = 3, alpha = 0.12)+
+  annotate('text', label = 'Autocracy', color = 'firebrick', size = 7, x = 37500, y = 35)+
+  annotate('text', label = 'Democracy', color = 'dodgerblue', size = 7, x = 62500, y = 5)+
+  scale_x_continuous(labels = scales::comma)+
+  theme_minimal()+
+  labs(title = 'Democracy Escapes Development Dilemma',
+       subtitle = '  Greenhouse Gas Emissions, 2000-2017',
+       y = 'Emissions per capita (metric tons)',
+       x = 'GDP per capita (USD)')+
+  theme(legend.position = 'none',
+        title = element_text(size = 20, face = 'bold'),
+        axis.title = element_text(size = 18, face = 'bold'),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 16),
+        axis.title.y = element_text(margin = margin(r = 8))) 
+ggsave(filename = "./visuals/development_and_emissions_by_regime_dotted.jpg",
        width = 10,
        height = 6,
        units = 'in')
