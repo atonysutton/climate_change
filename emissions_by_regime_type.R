@@ -1469,7 +1469,7 @@ ghg %>%
         panel.grid.minor = element_blank(),
         axis.text = element_text(size = 16),
         axis.title.y = element_text(margin = margin(r = 8))) 
-ggsave(filename = "./visuals/developmet_dilemma_by_decade_and_regime.jpg",
+ggsave(filename = "./visuals/development_dilemma_by_decade_and_regime.jpg",
        width = 10,
        height = 6,
        units = 'in')
