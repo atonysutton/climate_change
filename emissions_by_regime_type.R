@@ -1394,10 +1394,10 @@ ghg %>%
               color = 'firebrick', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd1980', polyarchy < 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
-              color = 'firebrick', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+              color = 'firebrick', linetype = 'dotdash', size = 1.2, alpha = 0.4, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd1990', polyarchy < 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
-              color = 'firebrick', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+              color = 'firebrick', linetype = 'dashed', size = 1.4, alpha = 0.6, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd2000', polyarchy < 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
               color = 'firebrick', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
@@ -1409,10 +1409,10 @@ ghg %>%
               color = 'dodgerblue', linetype = 'dotted', size = 1, alpha = 0.2, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd1980', polyarchy >= 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
-              color = 'dodgerblue', linetype = 'dashed', size = 1.2, alpha = 0.4, se = FALSE)+
+              color = 'dodgerblue', linetype = 'dotdash', size = 1.2, alpha = 0.4, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd1990', polyarchy >= 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
-              color = 'dodgerblue', linetype = 'dotdash', size = 1.4, alpha = 0.6, se = FALSE)+
+              color = 'dodgerblue', linetype = 'dashed', size = 1.4, alpha = 0.6, se = FALSE)+
   geom_smooth(data = . %>% filter(decade == 'd2000', polyarchy >= 0.5),
               aes(x = gdp_percap, y = (1000 * emit_percap)),
               color = 'dodgerblue', linetype = 'longdash', size = 1.6, alpha = 0.8, se = FALSE)+
